@@ -359,6 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: {fileID: 1632331148}
+  fade: {fileID: 1771178961}
 --- !u!1 &1632331143
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,3 +561,9 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53c22e1773be7f84aad8ed8b7b58fa6e, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1771178961 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11421522, guid: 53c22e1773be7f84aad8ed8b7b58fa6e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1771178960}
+  m_Script: {fileID: 11500000, guid: d416d1715bbc06d4789612d1211da8d4, type: 3}

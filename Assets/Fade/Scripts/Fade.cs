@@ -24,7 +24,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Assertions;
 
-public class Fade : SingletonMonoBehaviour<Fade>
+public class Fade : MonoBehaviour
 {
 	IFade fade;
 

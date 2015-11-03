@@ -26,14 +26,17 @@ using System.Collections;
 public class FadeTest : MonoBehaviour 
 {
 	[SerializeField]
-	CanvasGroup group;
+	CanvasGroup group = null;
+
+	[SerializeField]
+	Fade fade = null;
 
 	public void Fadeout()
 	{
 		group.blocksRaycasts = false;
-		Fade.Instance.FadeIn (1, () =>
+		fade.FadeIn (1, () =>
 		{
-			Fade.Instance.FadeOut(1, ()=>{
+			fade.FadeOut(1, ()=>{
 				group.blocksRaycasts = true;
 			});
 		});

@@ -1482,6 +1482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: {fileID: 1724685276}
+  fade: {fileID: 1724685275}
 --- !u!114 &854633187
 MonoBehaviour:
   m_ObjectHideFlags: 0
