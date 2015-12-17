@@ -124,12 +124,8 @@ Shader "UI/Mask"
 				half mask = tex2D(_MaskTex, IN.texcoord).a;
 				half alpha = mask - (-1 + _Range * 2);
 				color.a *= alpha;
-				
-				if (_UseClipRect)
-					color *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
-				
-				if (_UseAlphaClip)
-					clip (color.a - 0.001);
+			
+				clip (color.a - 0.001);
 
 				return color;
 			}
