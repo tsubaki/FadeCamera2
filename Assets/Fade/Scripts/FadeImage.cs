@@ -34,10 +34,10 @@ public class FadeImage : UnityEngine.UI.Graphic , IFade
 	public void UpdateMaskCutout(float range)
 	{
 		enabled = true;
-		material.SetFloat ("_Range", range);
+		material.SetFloat ("_Range", 1 - range);
 		var mask = GetComponent<Mask> ();
 
-		if (range == 1) {
+		if (range == 0) {
 			this.enabled = false;
 		}
 	}

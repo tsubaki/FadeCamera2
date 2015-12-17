@@ -53,6 +53,7 @@ public class Fade : MonoBehaviour
 		float endTime = Time.timeSinceLevelLoad + time * (cutoutRange);
 
 		var endFrame = new WaitForEndOfFrame ();
+
 		while (Time.timeSinceLevelLoad <= endTime) {
 			cutoutRange = (endTime - Time.timeSinceLevelLoad) / time;
 			fade.UpdateMaskCutout (cutoutRange);
@@ -71,6 +72,7 @@ public class Fade : MonoBehaviour
 		float endTime = Time.timeSinceLevelLoad + time * (1 - cutoutRange);
 		
 		var endFrame = new WaitForEndOfFrame ();
+
 		while (Time.timeSinceLevelLoad <= endTime) {
 			cutoutRange = 1 - ((endTime - Time.timeSinceLevelLoad) / time);
 			fade.UpdateMaskCutout (cutoutRange);
