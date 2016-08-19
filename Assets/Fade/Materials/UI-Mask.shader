@@ -25,8 +25,17 @@ Shader "UI/Mask"
 	Properties
 	{
 		[PerRendererData] _MaskTex("Mask Texture", 2D) = "white" {}
-		[PerRendererData] _Color ("Tint", Color) = (1,1,1,1)		
+		_Color ("Tint", Color) = (1,1,1,1)
+		
+		_StencilComp ("Stencil Comparison", Float) = 8
+		_Stencil ("Stencil ID", Float) = 0
+		_StencilOp ("Stencil Operation", Float) = 0
+		_StencilWriteMask ("Stencil Write Mask", Float) = 255
+		_StencilReadMask ("Stencil Read Mask", Float) = 255
+
 		_Range("Range", Range (0, 1)) = 0
+
+		_ColorMask ("Color Mask", Float) = 15
 	}
 
 	SubShader
@@ -39,12 +48,22 @@ Shader "UI/Mask"
 			"PreviewType"="Plane"
 			"CanUseSpriteAtlas"="True"
 		}
+		
+		Stencil
+		{
+			Ref [_Stencil]
+			Comp [_StencilComp]
+			Pass [_StencilOp] 
+			ReadMask [_StencilReadMask]
+			WriteMask [_StencilWriteMask]
+		}
 
 		Cull Off
 		Lighting Off
 		ZWrite Off
 		ZTest [unity_GUIZTestMode]
 		Blend SrcAlpha OneMinusSrcAlpha
+		ColorMask [_ColorMask]
 
 		Pass
 		{
@@ -71,6 +90,12 @@ Shader "UI/Mask"
 			};
 			
 			fixed4 _Color;
+			fixed4 _TextureSampleAdd;
+	
+			bool _UseClipRect;
+			float4 _ClipRect;
+
+			bool _UseAlphaClip;
 
 			v2f vert(appdata_t IN)
 			{
@@ -88,12 +113,13 @@ Shader "UI/Mask"
 				return OUT;
 			}
 
+			sampler2D _MainTex;
 			sampler2D _MaskTex;
 			float _Range;
 
 			fixed4 frag(v2f IN) : SV_Target
 			{
-				half4 color = IN.color;
+				half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
 				half mask = tex2D(_MaskTex, IN.texcoord).a;
 				half alpha = mask - (-1 + _Range * 2);
 				color.a *= alpha;
