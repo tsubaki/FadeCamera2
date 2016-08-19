@@ -28,13 +28,12 @@ public class Fade : MonoBehaviour
 {
 	IFade fade;
 
-	void Start()
+	void Start ()
 	{
 		Init ();
-		fade.UpdateMaskCutout (cutoutRange);
+		fade.Range = cutoutRange;
 	}
 
-	[SerializeField, Range(0, 1)]
 	float cutoutRange;
 
 	void Init ()
@@ -45,7 +44,7 @@ public class Fade : MonoBehaviour
 	void OnValidate ()
 	{
 		Init ();
-		fade.UpdateMaskCutout (cutoutRange);
+		fade.Range = cutoutRange;
 	}
 
 	IEnumerator FadeoutCoroutine (float time, System.Action action)
@@ -56,14 +55,14 @@ public class Fade : MonoBehaviour
 
 		while (Time.timeSinceLevelLoad <= endTime) {
 			cutoutRange = (endTime - Time.timeSinceLevelLoad) / time;
-			fade.UpdateMaskCutout (cutoutRange);
+			fade.Range = cutoutRange;
 			yield return endFrame;
 		}
 		cutoutRange = 0;
-		fade.UpdateMaskCutout (cutoutRange);
+		fade.Range = cutoutRange;
 
 		if (action != null) {
-			action();
+			action ();
 		}
 	}
 
@@ -75,11 +74,11 @@ public class Fade : MonoBehaviour
 
 		while (Time.timeSinceLevelLoad <= endTime) {
 			cutoutRange = 1 - ((endTime - Time.timeSinceLevelLoad) / time);
-			fade.UpdateMaskCutout (cutoutRange);
+			fade.Range = cutoutRange;
 			yield return endFrame;
 		}
 		cutoutRange = 1;
-		fade.UpdateMaskCutout (cutoutRange);
+		fade.Range = cutoutRange;
 
 		if (action != null) {
 			action ();

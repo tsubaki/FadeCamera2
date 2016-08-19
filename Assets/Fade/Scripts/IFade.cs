@@ -25,7 +25,6 @@ using System.Collections;
 
 public interface IFade  
 {
-	void UpdateMaskCutout(float range);
-	float Range{get;}
+	float Range{get; set;}
 }
 

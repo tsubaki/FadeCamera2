@@ -29,30 +29,47 @@ public class FadeImage : UnityEngine.UI.Graphic , IFade
 	[SerializeField]
 	private Texture maskTexture = null;
 
-	public float Range{get; private set;}
+	[SerializeField, Range (0, 1)]
+	private float cutoutRange;
 
-	public void UpdateMaskCutout(float range)
+	public float Range {
+		get {
+			return cutoutRange;
+		}
+		set {
+			cutoutRange = value;
+			UpdateMaskCutout (cutoutRange);
+		}
+	}
+
+	protected override void Start ()
+	{
+		base.Start ();
+		UpdateMaskTexture (maskTexture);
+	}
+
+	private void UpdateMaskCutout (float range)
 	{
 		enabled = true;
 		material.SetFloat ("_Range", 1 - range);
-		var mask = GetComponent<Mask> ();
 
-		if (range == 0) {
+		if (range <= 0) {
 			this.enabled = false;
 		}
 	}
 
-	public void UpdateMaskTexture(Texture texture)
+	public void UpdateMaskTexture (Texture texture)
 	{
 		material.SetTexture ("_MaskTex", texture);
 		material.SetColor ("_Color", color);
 	}
-#if UNITY_EDITOR
-	protected override void OnValidate()
+
+	#if UNITY_EDITOR
+	protected override void OnValidate ()
 	{
 		base.OnValidate ();
 		UpdateMaskCutout (Range);
 		UpdateMaskTexture (maskTexture);
 	}
-#endif
+	#endif
 }
