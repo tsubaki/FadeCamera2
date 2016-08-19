@@ -24,10 +24,9 @@ Shader "UI/Mask"
 {
 	Properties
 	{
-		_Color ("Tint", Color) = (1,1,1,1)
-		
+		[PerRendererData] _MaskTex("Mask Texture", 2D) = "white" {}
+		[PerRendererData] _Color ("Tint", Color) = (1,1,1,1)		
 		_Range("Range", Range (0, 1)) = 0
-		_MaskTex("Mask Texture", 2D) = "white" {}
 	}
 
 	SubShader
