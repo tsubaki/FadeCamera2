@@ -32,6 +32,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def0ebf35fa4cab448c8a4f16b096e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cutoutRange: 0
   mat: {fileID: 2100000, guid: 4c710d45ee235444caea9b50aef4d3c9, type: 2}
   rt: {fileID: 8400000, guid: fe99870ba03c2f343b48e98d34ac4fc9, type: 2}
   texture: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
@@ -46,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d416d1715bbc06d4789612d1211da8d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutoutRange: 0
 --- !u!114 &11486538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,6 +100,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
