@@ -24,7 +24,7 @@ Shader "UI/Mask"
 {
 	Properties
 	{
-		[PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
+		[PerRendererData] _MaskTex("Mask Texture", 2D) = "white" {}
 		_Color ("Tint", Color) = (1,1,1,1)
 		
 		_StencilComp ("Stencil Comparison", Float) = 8
@@ -34,7 +34,6 @@ Shader "UI/Mask"
 		_StencilReadMask ("Stencil Read Mask", Float) = 255
 
 		_Range("Range", Range (0, 1)) = 0
-		_MaskTex("Mask Texture", 2D) = "white" {}
 
 		_ColorMask ("Color Mask", Float) = 15
 	}

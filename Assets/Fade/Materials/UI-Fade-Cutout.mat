@@ -32,6 +32,10 @@ Material:
     m_Floats:
       data:
         first:
+          name: _Range
+        second: 1
+      data:
+        first:
           name: _Stencil
         second: 0
       data:
@@ -54,10 +58,6 @@ Material:
         first:
           name: _ColorMask
         second: 15
-      data:
-        first:
-          name: _Range
-        second: 1
     m_Colors:
       data:
         first:

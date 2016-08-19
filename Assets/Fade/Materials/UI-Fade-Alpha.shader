@@ -20,21 +20,13 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-Shader "UI/Fade"
+Shader "UI/Fade Alpha"
 {
 	Properties
 	{
-		_Color ("Tint", Color) = (1,0,1,1)
-		
-		_StencilComp ("Stencil Comparison", Float) = 8
-		_Stencil ("Stencil ID", Float) = 0
-		_StencilOp ("Stencil Operation", Float) = 0
-		_StencilWriteMask ("Stencil Write Mask", Float) = 255
-		_StencilReadMask ("Stencil Read Mask", Float) = 255
-
+		[PerRendererData] _MaskTex("Mask Texture", 2D) = "white" {}
+		[PerRendererData] _Color ("Tint", Color) = (1,0,1,1)
 		_Range("Range", Range (0, 1)) = 0
-
-		_ColorMask ("Color Mask", Float) = 15
 	}
 
 	SubShader
@@ -90,11 +82,6 @@ Shader "UI/Fade"
 			
 			fixed4 _Color;
 			fixed4 _TextureSampleAdd;
-	
-			bool _UseClipRect;
-			float4 _ClipRect;
-
-			bool _UseAlphaClip;
 
 			v2f vert(appdata_t IN)
 			{
@@ -122,8 +109,6 @@ Shader "UI/Fade"
 				half mask = tex2D(_MaskTex, IN.texcoord).a - (-1 + _Range * 2);
 				color.a = mask;
 				
-				if (_UseClipRect)
-					color *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
 				clip(mask - 0.001);
 
 				return color;
